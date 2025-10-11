@@ -13,22 +13,33 @@ dotenv.config();
 const app = express();
 
 const PORT = process.env.PORT || 8000;
-const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
+const FRONTEND_URL = process.env.FRONTEND_URL || "https://online-jobportal.netlify.app";
+const allowedOrigins = [
+  FRONTEND_URL,
+  "http://localhost:5173",
+  "https://online-jobportal.netlify.app" // your real frontend URL
+];
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+// Root route
+app.get("/", (req, res) => {
+  res.send("Server is running!");
+});
+
+
 // Setup CORS with dynamic origin allowing credentials
 app.use(
   cors({
     origin: function (origin, callback) {
-      // allow requests with no origin (like curl or mobile apps)
-      if (!origin) return callback(null, true);
-      if (origin === FRONTEND_URL || origin === "http://localhost:5173") {
+      if (!origin) return callback(null, true); // allow server-to-server or curl
+      if (allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
+        console.log("❌ Blocked by CORS:", origin);
         callback(new Error("Not allowed by CORS"));
       }
     },
