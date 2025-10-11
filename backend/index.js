@@ -19,7 +19,8 @@ const FRONTEND_URL = process.env.FRONTEND_URL || "https://online-jobportal.netli
 const allowedOrigins = [
   FRONTEND_URL,
   "http://localhost:5173",
-  "https://online-jobportal.netlify.app"
+  "https://online-jobportal.netlify.app",
+  "https://job-portal-ghzt.onrender.com"
 ];
 
 // ✅ Move CORS setup right after app initialization
