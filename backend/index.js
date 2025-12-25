@@ -18,7 +18,7 @@ const FRONTEND_URL = process.env.FRONTEND_URL;
 const allowedOrigins = [
   FRONTEND_URL,
   "http://localhost:5173",
-  "https://online-jobportal.netlify.app"
+  "https://job-portal-frontend-mcl5.onrender.com"
 ];
 
 app.use(
