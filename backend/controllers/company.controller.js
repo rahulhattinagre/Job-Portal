@@ -16,8 +16,7 @@ export const registerCompany = async (req, res) => {
             return res.status(400).json({
                 message: "You can't register same company.",
                 success: false
-            })
-        };
+            })};
         company = await Company.create({
             name: companyName,
             userId: req.id
